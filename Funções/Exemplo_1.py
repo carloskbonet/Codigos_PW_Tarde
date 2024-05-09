@@ -1,21 +1,25 @@
 
-def parOuImpar(num:int):
+
+def parOuImpar(num:int) -> int:
     verify = int(0);
 
     verify = num % 2;
 
     if (verify == 0):
-        return "PAR";
+        return 1;
     else:
-        return "IMPAR";
+        return 0;
 
 
 number = int(0);
-result = str('');
+result = int(0);
 
 number = int(input('Digite: '));
 
 
 result = parOuImpar(number);
 
-print(f'O resultado é: {result}');
+if ( result == 1 ):
+    print(f'\nO número digitado é PAR.');
+else:
+    print(f'\nO número digitado é IMPAR.');
