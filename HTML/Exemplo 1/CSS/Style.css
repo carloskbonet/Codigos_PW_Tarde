@@ -1,0 +1,24 @@
+
+body {
+    background-color: rgb(255, 246, 192);
+
+    text-align: center;
+}
+
+h2 {
+    color: rgb(0, 105, 0);
+    font-size: 22px;
+    font-weight: bolder;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 5%;
+}
+
+.imagem {
+    width: 25%;
+    margin-top: 3%;
+    margin-bottom: 5%;
+}
+
+.container {
+    background-color: white;
+}
