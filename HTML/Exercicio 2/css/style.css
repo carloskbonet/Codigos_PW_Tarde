@@ -1,0 +1,54 @@
+
+body {
+    background-image: url('https://c.wallhere.com/photos/2a/5e/food_vegetables_tomatoes_salad_Pepper_Garlic_Paprika-1949021.jpg!d');
+    background-size: cover;
+    margin: 0%;
+    overflow: hidden;
+}
+
+
+.container {
+    background-color: antiquewhite;
+    margin-left: 27%;
+    margin-right: 27%;
+    padding: 1%;
+    padding-left: 3%;
+    border: 1px solid rgba(128, 128, 128, 0.493);
+    border-radius: 8px;
+    height: 96%;
+}
+
+.comment {
+    width: 60%;
+    height: 15%;
+    resize: none;
+    font-size: 100%;
+    font-size: 18px;
+}
+
+.btnSubmit {
+    margin-top: 3%;
+    width: 10%;
+    background-color: white;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 8px;
+}
+
+.btnSubmit:hover {
+    background-color: black;
+    color: white;
+}
+
+.avaliation {
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.selectFood {
+    border-radius: 8px;
+    padding: 1%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
