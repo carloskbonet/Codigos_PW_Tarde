@@ -2,8 +2,9 @@ body {
     background-color: grey;
     margin: 0%;
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 50% 50%;
     overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .img {
@@ -16,6 +17,23 @@ body {
 .container {
     height: 100%;
     width: 100%;
-    background-color: white;
-    margin-left: 1%;
+    background-color: rgb(255, 248, 216);
+    border-left: 2px solid rgba(0, 0, 0, 0.514);
+    padding: 1%;
+}
+
+ul {
+    list-style: circle;
+}
+
+.title {
+    margin-left: 12%;
+}
+
+li {
+    border: 1px solid black;
+    width: 50%;
+    padding: 1%;
+    border-radius: 8px;
+    margin-top: 1%;
 }

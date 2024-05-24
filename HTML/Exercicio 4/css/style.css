@@ -1,0 +1,32 @@
+body {
+    color: black;
+    margin: 0%;
+    background-color: rgb(96, 161, 96);
+}
+
+td, th {
+    border: 1px solid rgb(97, 96, 96);
+    padding: 1%;
+    width: 300px;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 3%;
+    margin-left: 1%;
+}
+
+.container {
+    background-color: white;
+    border: 1px solid rgb(119, 119, 119);
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 100%;
+    padding: 3%;
+    text-align: center;
+}
+
+img {
+    width: 150px;
+}
