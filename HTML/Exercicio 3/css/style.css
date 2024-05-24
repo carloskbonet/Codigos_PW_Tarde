@@ -1,0 +1,21 @@
+body {
+    background-color: grey;
+    margin: 0%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    overflow: hidden;
+}
+
+.img {
+    height: 100%;
+    width: 100%;
+    background-image: url('../images/wallpaper.jfif');
+    background-size: cover;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    margin-left: 1%;
+}

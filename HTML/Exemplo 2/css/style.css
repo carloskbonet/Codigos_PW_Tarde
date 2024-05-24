@@ -1,0 +1,22 @@
+
+body {
+    margin: 0%;
+    background-color: rgb(194, 194, 194);
+}
+
+.container {
+    margin-left: 20%;
+    background-color: rgba(129, 129, 129, 0.74);
+    height: 100%;
+    padding: 1%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.card {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    margin-top: 1%;
+    border: 1px solid black;
+}
