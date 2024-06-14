@@ -1,0 +1,49 @@
+body {
+    background-image: url('../images/wallpaper.jpg');
+    background-size: cover;
+}
+
+.container {
+    background-color: rgb(213, 255, 235);
+    padding: 2%;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    border: 1px solid rgba(0, 0, 0, 0.486);
+    border-radius: 8px;
+    height: 60%;
+    text-align: center;
+}
+
+.title {
+    border: 1px solid rgba(0, 0, 0, 0.603);
+    margin-left: 30%;
+    margin-right: 30%;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+#fillForm {
+    font-size: 18px;
+}
+
+input {
+    width: 30%;
+    height: 6%;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.452);
+}
+
+#birthDate {
+    font-size: 16px;
+}
+
+#order {
+    font-size: 16px;
+}
+
+select {
+    width: 20%;
+    height: 6%;
+}
