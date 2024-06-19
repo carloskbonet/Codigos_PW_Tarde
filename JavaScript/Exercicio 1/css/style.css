@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-    background-color: rgb(213, 255, 235);
+    background-color: rgb(255, 255, 255);
     padding: 2%;
     margin-top: 5%;
     margin-left: 20%;
@@ -13,9 +13,11 @@ body {
     border-radius: 8px;
     height: 60%;
     text-align: center;
+    display: none;
 }
 
 .title {
+    background-color: rgb(255, 204, 146);
     border: 1px solid rgba(0, 0, 0, 0.603);
     margin-left: 30%;
     margin-right: 30%;
@@ -46,4 +48,82 @@ input {
 select {
     width: 20%;
     height: 6%;
+}
+
+
+.container-2 {
+    background-color: rgb(255, 255, 255);
+    padding: 2%;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 60%;
+    border: 1px solid rgba(0, 0, 0, 0.466);
+    border-radius: 8px;
+    display: block;
+}
+
+
+
+.icon {
+    height: 20%;
+    border: 3px solid black;
+    padding: 1%;
+    border-radius: 100%;
+}
+
+.container-2-grid {
+    display: grid;
+    grid-template-columns: 45% 5% 45%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.grid-middle {
+    height: 56%;
+    width: 5%;
+    background-color: rgba(0, 0, 0, 0.603);
+}
+
+.grid-right {
+    text-align: center;
+}
+
+.store-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: brown;
+    border: 2px solid black;
+    margin-right: 54%;
+    padding: 1%;
+    border-radius: 8px;
+}
+
+.order-c {
+    font-size: 16px;
+}
+
+.status {
+    font-size: 22px;
+    color: blue;
+    border: 2px solid black;
+    padding: 1%;
+    border-radius: 8px;
+}
+
+.deliver-at {
+    font-size: 26px;
+    color: brown;
+    font-weight: bold;
+}
+
+.purchase {
+    border: 2px solid black;
+    padding: 1%;
+    border-radius: 8px;
+    height: 25%;
+}
+
+.single-product {
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
