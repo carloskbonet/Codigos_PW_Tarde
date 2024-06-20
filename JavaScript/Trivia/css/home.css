@@ -70,3 +70,41 @@ button {
     padding: 2%;
     text-align: left;
 }
+
+#options {
+    background-color: rgb(255, 240, 243);
+    width: 8%;
+    height: 10%;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+    border-radius: 6px;
+    padding: 2%;
+    float: right;
+    margin-top: -19%;
+    margin-right: 25%;
+}
+
+#options button {
+    width: 100%;
+    height: 40%;
+    margin-bottom: 10%;
+}
+
+#easy-button {
+    background-color: white;
+    color: black;
+}
+
+#easy-button:hover {
+    background-color: black;
+    color: white;
+}
+
+#hard-button {
+    background-color: rgb(255, 115, 115);
+    color: white;
+}
+
+#hard-button:hover {
+    background-color: white;
+    color: black;
+}
