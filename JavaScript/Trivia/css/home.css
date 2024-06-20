@@ -81,6 +81,7 @@ button {
     float: right;
     margin-top: -19%;
     margin-right: 25%;
+    display: none;
 }
 
 #options button {
