@@ -1,6 +1,8 @@
 
 body {
-
+    background-image: url(../images/vasco.webp);
+    background-size: contain;
+    background-position-x: -28%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -42,4 +44,29 @@ button {
 #configs:hover {
     background-color: white;
     color: black;
+}
+
+#rules {
+    border: 1px solid rgba(0, 0, 0, 0.582);
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: rgb(214, 214, 214);
+    cursor: default;
+}
+
+#rules:hover + #rules-container{
+    display: block;
+}
+
+#rules-container {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin-top: 2%;
+    margin-right: 10%;
+    margin-left: 10%;
+    height: 80%;
+    display: none;
+    padding: 2%;
+    text-align: left;
 }
