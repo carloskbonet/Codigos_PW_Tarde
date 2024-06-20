@@ -1,0 +1,45 @@
+
+body {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#container {
+    background-color: antiquewhite;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%;
+    height: 40%;
+    text-align: center;
+    padding: 2%;
+    border: 1px solid rgba(0, 0, 0, 0.527);
+    border-radius: 8px;
+}
+
+button {
+    width: 30%;
+    height: 10%;
+    margin-bottom: 2%;
+    border: 1px solid rgba(0, 0, 0, 0.445);
+    border-radius: 3px;
+}
+
+#start {
+    background-color: rgb(255, 106, 106);
+    color: white;
+}
+
+#start:hover {
+    background-color: white;
+    color: black;
+}
+
+#configs {
+    background-color: rgb(175, 175, 175);
+    color: white;
+}
+
+#configs:hover {
+    background-color: white;
+    color: black;
+}

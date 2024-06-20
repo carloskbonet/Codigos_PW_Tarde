@@ -45,16 +45,36 @@ function formSubmit() {
     container.style.display = 'none';
 
     container2.style.display = 'block';
+
+
+    delivery();
 }
 
-//  Container 2 ( Interface de Status da compra )
 
-// Icone da Loja / Nome ao lado do icone
+function delivery() {
+    const deliverAt = document.getElementById('deliver-at');
+    const productName = document.getElementById('product-name');
+    const productValue = document.getElementById('product-value');
+    const customerName = document.getElementById('customer-name');
+    const currentDate = new Date();
 
-// Mensagem de "Pedido concluído"
+    productsValues = {
+        "macarrao" : "39.99 R$",
+        "omelete" : "14.99 R$"
+    }
 
-// Produto selecionado para a compra
+    productsPrepTime = {
+        "macarrao" : 2,
+        "omelete" : 1
+    }
 
-// Valor do produto (Possível cupom)
+    let deliverHour = (currentDate.getHours() + productsPrepTime[orders.value]) + ':' + currentDate.getMinutes();
 
-// Horário previsto para a entrega
+    // Atualizar informações
+    productName.textContent = orders.value;
+    productValue.textContent = productsValues[orders.value];
+    deliverAt.textContent = deliverHour;
+    customerName.textContent = `Endereço: casa do(a) ${userName.value}`;
+    
+
+}
