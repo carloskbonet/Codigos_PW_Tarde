@@ -94,9 +94,15 @@ function answer(alt) {
 
     if ( alt == questions[round-1].answer ) {
         console.log('Acertou');
-        round = round + 1;
-        updateInfos();
 
+        if ( rounds < questions.length ) {
+            round = round + 1;
+            updateInfos();
+        }
+        else{
+            alert('Acabaram as questões');
+            window.location.replace('./index.html');
+        }
     }
     else {
         console.log('Errou');
