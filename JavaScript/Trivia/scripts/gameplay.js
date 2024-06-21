@@ -95,7 +95,7 @@ function answer(alt) {
     if ( alt == questions[round-1].answer ) {
         console.log('Acertou');
 
-        if ( rounds < questions.length ) {
+        if ( round < questions.length ) {
             round = round + 1;
             updateInfos();
         }
