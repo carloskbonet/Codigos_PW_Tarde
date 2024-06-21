@@ -7,7 +7,7 @@
 // Esportes
 // Jogos / Animes
 
-answers = [
+questions = [
     {
         // MJ
         question : 'Qual é o estilo musical ?',
@@ -17,15 +17,6 @@ answers = [
         d : 'Samba',
         answer : 'b'
     },
-    {   
-        // Ka
-        question : 'Qual é o estilo musical ?',
-        a : 'Jazz',
-        b : 'Pop',
-        c : 'MPB',
-        d : 'Samba',
-        answer : 'c'
-    },
     {
         // K F P
         question : 'Quem é o cantor?',
@@ -34,6 +25,15 @@ answers = [
         c : 'Eddie Vedder',
         d : "Jack Black",
         answer : 'd'
+    },
+    {   
+        // Ka
+        question : 'Qual é o estilo musical ?',
+        a : 'Jazz',
+        b : 'Pop',
+        c : 'MPB',
+        d : 'Samba',
+        answer : 'c'
     },
     {
         // I U 2
@@ -66,3 +66,41 @@ answers = [
 
 
 
+var round = 1;
+const roundHTML = document.getElementById('round');
+const question = document.getElementById('question'); 
+const altA = document.getElementById('altA');
+const altB = document.getElementById('altB');
+const altC = document.getElementById('altC');
+const altD = document.getElementById('altD');
+
+
+function updateInfos() {
+    roundHTML.textContent = round;
+    question.textContent = questions[round-1].question;
+    altA.textContent = questions[round-1].a;
+    altB.textContent = questions[round-1].b;
+    altC.textContent = questions[round-1].c;
+    altD.textContent = questions[round-1].d;
+}
+
+updateInfos();
+
+// A variável "alt" pode ter os valores : 'a' , 'b' , 'c' ou 'd'
+function answer(alt) {
+    // Verificar se "alt" é igual à resposta da questão.
+    // Se a resposta for SIM, então podemos incrementar a variável "rounds" e atualizar a interface novamente.
+    // Se a resposta for NÃO, podemos encerrar o jogo ou decrementar o número de tentativas. (Tentativas são opcionais)
+
+    if ( alt == questions[round-1].answer ) {
+        console.log('Acertou');
+        round = round + 1;
+        updateInfos();
+
+    }
+    else {
+        console.log('Errou');
+    }
+
+
+}
