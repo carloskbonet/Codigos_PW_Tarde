@@ -78,9 +78,13 @@ const altD = document.getElementById('altD');
 const triesFromHTML = document.getElementById('tries');
 const pontuationFromHTML = document.getElementById('pontuation');
 
+// Temporizador
+const timerFromHTML = document.getElementById('timer');
+
 var timerID = undefined;
 var pontuation = 0;
 var tries = 3;
+var timeToAnswer = 5000;
 
 
 function updateInfos() {
@@ -93,7 +97,7 @@ function updateInfos() {
     triesFromHTML.textContent = `Tentativas : ${tries}`;
     pontuationFromHTML.textContent = `${pontuation} Pontos.`;
 
-    timerID = setTimeout( timeOut , 5000 );
+    updateTimer();
 }
 
 updateInfos();
@@ -105,6 +109,7 @@ function answer(alt) {
     // Se a resposta for NÃO, podemos encerrar o jogo ou decrementar o número de tentativas. (Tentativas são opcionais)
 
     clearTimeout(timerID);
+    timeToAnswer = 5000;
 
     if ( alt == questions[round-1].answer ) {
         console.log('Acertou');
@@ -115,6 +120,7 @@ function answer(alt) {
             // Adicionar pontuação nesta sessão
             pontuation = pontuation + ( round ** 2 );
 
+            alert('Acertou 😎👌👌👌');
             updateInfos();
         }
         else{
@@ -139,12 +145,28 @@ function answer(alt) {
             // Passar para a próxima questão
             if ( round < questions.length ) {
                 round = round + 1;
+
+                alert('Errou ☠️😐😓');
                 updateInfos();
             }
         }
     }
 
 }
+
+function updateTimer() {
+
+    if ( timeToAnswer > 0 ) {
+        timerFromHTML.textContent = timeToAnswer / 1000;
+
+        timeToAnswer = timeToAnswer - 1000;
+        timerID = setTimeout( updateTimer , 1000 );
+    }
+    else {
+        timeOut();
+    }
+}
+
 
 function timeOut() {
     alert('O tempo acabou.');
