@@ -73,7 +73,7 @@ const altA = document.getElementById('altA');
 const altB = document.getElementById('altB');
 const altC = document.getElementById('altC');
 const altD = document.getElementById('altD');
-
+var timerID = undefined;
 
 function updateInfos() {
     roundHTML.textContent = round;
@@ -82,6 +82,8 @@ function updateInfos() {
     altB.textContent = questions[round-1].b;
     altC.textContent = questions[round-1].c;
     altD.textContent = questions[round-1].d;
+
+    timerID = setTimeout( timeOut , 5000 );
 }
 
 updateInfos();
@@ -91,6 +93,8 @@ function answer(alt) {
     // Verificar se "alt" é igual à resposta da questão.
     // Se a resposta for SIM, então podemos incrementar a variável "rounds" e atualizar a interface novamente.
     // Se a resposta for NÃO, podemos encerrar o jogo ou decrementar o número de tentativas. (Tentativas são opcionais)
+
+    clearTimeout(timerID);
 
     if ( alt == questions[round-1].answer ) {
         console.log('Acertou');
@@ -105,8 +109,14 @@ function answer(alt) {
         }
     }
     else {
+        //Adicionar punição nesta sessão
+
         console.log('Errou');
     }
 
+}
 
+function timeOut() {
+    alert('O tempo acabou.');
+    window.location.replace('./index.html');
 }
