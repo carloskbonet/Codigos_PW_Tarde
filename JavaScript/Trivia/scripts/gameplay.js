@@ -73,7 +73,15 @@ const altA = document.getElementById('altA');
 const altB = document.getElementById('altB');
 const altC = document.getElementById('altC');
 const altD = document.getElementById('altD');
+
+// Tentativas e pontuação
+const triesFromHTML = document.getElementById('tries');
+const pontuationFromHTML = document.getElementById('pontuation');
+
 var timerID = undefined;
+var pontuation = 0;
+var tries = 3;
+
 
 function updateInfos() {
     roundHTML.textContent = round;
@@ -82,6 +90,8 @@ function updateInfos() {
     altB.textContent = questions[round-1].b;
     altC.textContent = questions[round-1].c;
     altD.textContent = questions[round-1].d;
+    triesFromHTML.textContent = `Tentativas : ${tries}`;
+    pontuationFromHTML.textContent = `${pontuation} Pontos.`;
 
     timerID = setTimeout( timeOut , 5000 );
 }
@@ -101,6 +111,10 @@ function answer(alt) {
 
         if ( round < questions.length ) {
             round = round + 1;
+            
+            // Adicionar pontuação nesta sessão
+            pontuation = pontuation + ( round ** 2 );
+
             updateInfos();
         }
         else{
@@ -110,8 +124,24 @@ function answer(alt) {
     }
     else {
         //Adicionar punição nesta sessão
+        if ( tries > 0 ) {
+            tries = tries -1;
 
-        console.log('Errou');
+            pontuation = pontuation / 2;
+        }
+
+        if ( tries <= 0 ) {
+            // Acabaram as tentativas
+            alert('Game Over');
+            window.location.replace('./index.html');
+        }
+        else{
+            // Passar para a próxima questão
+            if ( round < questions.length ) {
+                round = round + 1;
+                updateInfos();
+            }
+        }
     }
 
 }

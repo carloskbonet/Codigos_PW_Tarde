@@ -40,3 +40,8 @@ body {
     margin-top: 10%;
     margin-left: 25%;
 }
+
+.header {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
