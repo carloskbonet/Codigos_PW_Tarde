@@ -18,3 +18,5 @@ UPDATE Produto SET preco = 89.99 WHERE id = 3;
 
 
 DELETE FROM Produto WHERE id = 2;
+
+INSERT INTO Produto ( id,nome,preco,quantidade ) VALUES ( 2,'Martelo Sony' , 149.99 , 92 );
