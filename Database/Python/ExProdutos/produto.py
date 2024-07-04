@@ -66,6 +66,23 @@ def select():
 
 
 # UPDATE
+def update(_field:str , _name:str,  _newValue:any):
+    pass;
+
+def updatePrice(_name:str , _newPrice:float):
+    try:
+        productByName = findByName(_name);
+    
+        if ( productByName['status'] == 404 ):
+            return { 'status' : 404 , 'message' : 'Product not found'};
+
+        cursor.execute('UPDATE Product SET price = ? WHERE id = ?', ( _newPrice , productByName['data'][0] ));
+        connection.commit();
+    
+        return { 'status' : 200 , 'message' : 'Product updated'};
+
+    except:
+        return { 'status' : 500 , 'message' : 'Internal Error'};
 
 
 # DELETE

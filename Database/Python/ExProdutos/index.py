@@ -11,7 +11,8 @@ while ( True ):
     print('Digite 1 para criar um novo produto.');
     print('Digite 2 para buscar pelo nome.');
     print('Digite 3 para listar todos os produtos.');
-    print('Digite 4 para deletar um produto.');
+    print('Digite 4 para deletar.');
+    print('Digite 5 para atualizar.');
 
     inputMenu = int(input('Digite: '));
 
@@ -39,7 +40,7 @@ while ( True ):
         
             if ( response['status'] == 200 ):
                 print(f'\nID / NOME / PREÇO / QUANTIDADE');
-                print(response['data']);
+                print(f'{response['data'][0]} / {response['data'][1]} / {response['data'][2]} R$ / {response['data'][3]} Un');
 
         except:
             print('Something went wrong');
@@ -53,7 +54,7 @@ while ( True ):
             
             print(f'\nID / NOME / PREÇO / QUANTIDADE');
             for product in response['data']: 
-                print(product);
+                print(f'{product[0]} / {product[1]} / {product[2]} R$ / {product[3]} Un');
 
         else:
             print(response['message']);
@@ -70,5 +71,36 @@ while ( True ):
         except:
             print('Something went wrong');
 
+
+    if ( inputMenu == 5 ):
+        print('\nMenu de atualização do produto.');
+        print('Digite 1 para atualizar o nome');
+        print('Digite 2 para atualizar o preço');
+        print('Digite 3 para atualizar a quantidade');
+
+        subInputMenu = int(input('Digite: '));
+
+        try:
+            name = input('Nome: ');
+
+            productByName = produto.findByName(name);
+
+            if ( productByName['status'] == 200 ):
+                print(f'\nID / NOME / PREÇO / QUANTIDADE');
+                print(f'{productByName['data'][0]} / {productByName['data'][1]} / {productByName['data'][2]} R$ / {productByName['data'][3]} Un');
+
+
+                if ( subInputMenu == 2 ):
+                    print('\nAtualizando o preço do produto.');
+                    newPrice = float(input('Preço: '));
+            
+                    response = produto.updatePrice(name, newPrice);
+            
+                    print(f'\n{response['message']}');
+            else:
+                print(f'\n{productByName['message']}');
+
+        except:
+            print('Something went wrong');
 
     input('\nAperte ENTER para continuar');
