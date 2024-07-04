@@ -17,6 +17,13 @@ cursor.execute('''
 # CREATE
 def create(_name:str , _price:float , _quantity:int):
     try:
+        # Verificar todos os campos "unique". Impossibilitar a criação caso existam valores duplicados.
+        productByName = findByName(_name);
+
+        if ( productByName['status'] == 200 ):
+            return { 'status' : 403 , 'message' : 'Name already registered'};
+
+
         # Criação do produto
         cursor.execute('INSERT INTO Product (name,price,quantity) VALUES (?,?,?)' , (_name, _price , _quantity));
         connection.commit();
@@ -28,8 +35,20 @@ def create(_name:str , _price:float , _quantity:int):
 
 
 # FIND
-def findByName():
-    pass;
+def findByName(_name:str):
+    try:
+        product = None;
+    
+        cursor.execute('SELECT * FROM Product WHERE name = ?', (_name,));
+        product = cursor.fetchone();
+    
+        if ( product == None ):
+            return { 'status' : 404 , 'message' : 'Product not found'};
+        else:
+            return { 'status' : 200 , 'message' : 'Product found' , 'data' : product };
+
+    except:
+        return { 'status' : 500 , 'message' : 'Internal Error'};
 
 
 # SELECT
@@ -50,5 +69,17 @@ def select():
 
 
 # DELETE
-def delete():
-    pass;
+def delete(_name:str):
+    try:
+        productByName = findByName(_name);
+    
+        if ( productByName['status'] == 404 ):
+            return { 'status' : 404 , 'message' : 'Product not found' };
+
+        cursor.execute('DELETE FROM Product WHERE id = ?', (productByName['data'][0],));
+        connection.commit();
+    
+        return { 'status' : 410 , 'message' : 'Product deleted'};
+            
+    except:
+        return { 'status' : 500 , 'message' : 'Internal Error'};
