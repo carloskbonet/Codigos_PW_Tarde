@@ -67,7 +67,33 @@ def select():
 
 # UPDATE
 def update(_field:str , _name:str,  _newValue:any):
-    pass;
+    try:
+        fields = ['name' , 'price' , 'quantity'];
+
+        if ( _field not in fields ):
+            return { 'status' : 400, 'message' : 'Invalid field'};
+
+        productByName = findByName(_name);
+    
+        if ( productByName['status'] == 404 ):
+            return { 'status' : 404 , 'message' : 'Product not found'};
+
+        # Verificar os atributos únicos. Caso seja único, validar o novo valor.
+        if ( _field == 'name' ):
+            productNewName = findByName(_newValue);
+
+            if ( productNewName['status'] == 200 ):
+                return { 'status' : 400 , 'message' : 'New name already registered'};
+
+
+        cursor.execute(f'UPDATE Product SET {_field} = ? WHERE id = ?', (_newValue , productByName['data'][0]));
+        connection.commit();
+    
+        return { 'status' : 200, 'message' : 'Product updated'};
+
+    except:
+        return { 'status' : 500 , 'message' : 'Internal Error'};
+
 
 def updatePrice(_name:str , _newPrice:float):
     try:

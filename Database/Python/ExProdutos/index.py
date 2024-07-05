@@ -78,9 +78,10 @@ while ( True ):
         print('Digite 2 para atualizar o preço');
         print('Digite 3 para atualizar a quantidade');
 
-        subInputMenu = int(input('Digite: '));
-
         try:
+            subInputMenu = int(input('Digite: '));
+
+
             name = input('Nome: ');
 
             productByName = produto.findByName(name);
@@ -88,6 +89,14 @@ while ( True ):
             if ( productByName['status'] == 200 ):
                 print(f'\nID / NOME / PREÇO / QUANTIDADE');
                 print(f'{productByName['data'][0]} / {productByName['data'][1]} / {productByName['data'][2]} R$ / {productByName['data'][3]} Un');
+
+                if ( subInputMenu == 1 ):
+                    print('\nAtualizando o nome do produto.');
+                    newName = input('Novo Nome: ');
+
+                    response = produto.update('name' , name , newName);
+                
+                    print(f'\n{response['message']}');
 
 
                 if ( subInputMenu == 2 ):
@@ -97,6 +106,16 @@ while ( True ):
                     response = produto.updatePrice(name, newPrice);
             
                     print(f'\n{response['message']}');
+            
+                if ( subInputMenu == 3 ):
+                    print('\nAtualizando a quantidade do produto.');
+                    newQuantity = int(input('Quantidade: '));
+            
+                    response = produto.update('quantity' , name , newQuantity);
+            
+                    print(f'\n{response['message']}');
+
+
             else:
                 print(f'\n{productByName['message']}');
 
