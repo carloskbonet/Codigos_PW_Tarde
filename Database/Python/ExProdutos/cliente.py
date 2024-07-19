@@ -21,11 +21,15 @@ cursor.execute('''
 def create(_name:str, _cpf:str, _email:str , _phone:str):
     try:
         # Verificar todos os campos "unique". Impossibilitar a criação caso existam valores duplicados.
-        
+        customerByCPF = findByCPF(_cpf);
 
-        #if ( ['status'] == 200 ):
-        #    return { 'status' : 403 , 'message' : ' already registered'};
+        if ( customerByCPF['status'] == 200 ):
+            return { 'status' : 403 , 'message' : 'CPF already registered'};
 
+        customerByEmail = findByEmail(_email);
+
+        if ( customerByEmail['status'] == 200 ):
+            return { 'status' : 403 , 'message' : 'Email already registered'};
 
         # Criação do cliente
         cursor.execute('INSERT INTO Customer (name, cpf , email, phone) VALUES (?,?,?,?)' , (_name,_cpf,_email,_phone));
