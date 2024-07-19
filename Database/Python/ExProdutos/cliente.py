@@ -42,6 +42,21 @@ def create(_name:str, _cpf:str, _email:str , _phone:str):
 
 
 # Read - FIND
+def findById(id:str):
+    try:
+        customer = None;
+    
+        cursor.execute('SELECT * FROM Customer WHERE id = ?', (id,));
+        customer = cursor.fetchone();
+    
+        if ( customer == None ):
+            return { 'status' : 404 , 'message' : 'Customer not found'};
+        else:
+            return { 'status' : 200 , 'message' : 'Customer found' , 'data' : customer };
+
+    except:
+        return { 'status' : 500 , 'message' : 'Internal Error'};
+
 def findByCPF(_cpf:str):
     try:
         customer = None;

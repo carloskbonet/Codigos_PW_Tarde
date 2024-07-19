@@ -34,6 +34,21 @@ def create(_name:str , _price:float , _quantity:int):
         return { 'status' : 500 , 'message' : 'Internal Error'};
 
 
+def findById(id:str):
+    try:
+        product = None;
+    
+        cursor.execute('SELECT * FROM Product WHERE id = ?', (id,));
+        product = cursor.fetchone();
+    
+        if ( product == None ):
+            return { 'status' : 404 , 'message' : 'Product not found'};
+        else:
+            return { 'status' : 200 , 'message' : 'Product found' , 'data' : product };
+
+    except:
+        return { 'status' : 500 , 'message' : 'Internal Error'};
+
 # FIND
 def findByName(_name:str):
     try:

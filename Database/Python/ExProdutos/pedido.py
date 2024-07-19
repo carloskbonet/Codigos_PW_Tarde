@@ -3,6 +3,8 @@
 import sqlite3;
 from cliente import findByCPF;
 from produto import findByName;
+import cliente;
+import produto;
 
 connection = sqlite3.connect('store.db');
 cursor = connection.cursor();
@@ -28,7 +30,7 @@ cursor.execute('''
 def create(_code:str , _value:float , _quantity:int, _customerCPF:str , _productName:str):
     try:
         # Verificar todos os campos "unique". Impossibilitar a criação caso existam valores duplicados.
-        requestByCode = (_code);
+        requestByCode = findByCode(_code);
 
         if ( requestByCode['status'] == 200 ):
             return { 'status' : 403 , 'message' : 'Code already registered'};
@@ -67,7 +69,11 @@ def findByCode(_code:str):
         if ( request == None ):
             return { 'status' : 404 , 'message' : 'Request not found'};
         else:
-            return { 'status' : 200 , 'message' : 'Request found' , 'data' : request };
+            customerById =  cliente.findById( request[4] );
+            produtById = produto.findById( request[5] );
+
+
+            return { 'status' : 200 , 'message' : 'Request found' , 'data' : { 'request' : request , 'customer' : customerById , 'product' : produtById } };
 
     except:
         return { 'status' : 500 , 'message' : 'Internal Error'};
