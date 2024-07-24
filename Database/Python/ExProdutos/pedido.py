@@ -70,10 +70,12 @@ def findByCode(_code:str):
             return { 'status' : 404 , 'message' : 'Request not found'};
         else:
             customerById =  cliente.findById( request[4] );
-            produtById = produto.findById( request[5] );
+            productById = produto.findById( request[5] );
 
 
-            return { 'status' : 200 , 'message' : 'Request found' , 'data' : { 'request' : request , 'customer' : customerById , 'product' : produtById } };
+            #return { 'status' : 200 , 'message' : 'Request found' , 'data' : { 'request' : request , 'customer' : customerById , 'product' : productById } };
+
+            return { 'status' : 200 , 'message' : 'Request found' , 'request' : request , 'customer' : customerById['data'] , 'product' : productById['data'] };
 
     except:
         return { 'status' : 500 , 'message' : 'Internal Error'};

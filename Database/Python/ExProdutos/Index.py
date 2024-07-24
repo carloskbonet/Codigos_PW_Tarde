@@ -50,9 +50,9 @@ while ( True ):
         
             if ( response['status'] == 200 ):
                 print(f'\nID / CÓDIGO / VALOR / QUANTIDADE'); 
-                print(f'{response['data']['request'][0]} / {response['data']['request'][1]} / {response['data']['request'][2]} / {response['data']['request'][3]}');
-                print(f'{response['data']['customer'][0]} / {response['data']['customer'][1]} / {response['data']['customer'][2]} / {response['data']['customer'][3]}');
-                print(f'{response['data']['product'][0]} / {response['data']['product'][1]} / {response['data']['product'][2]} / {response['data']['product'][3]}');
+                print(f'{response['request'][0]} / {response['request'][1]} / {response['request'][2]} / {response['request'][3]}');
+                print(f'{response['customer'][0]} / {response['customer'][1]} / {response['customer'][2]} / {response['customer'][3]} / {response['customer'][4]}');
+                print(f'{response['product'][0]} / {response['product'][1]} / {response['product'][2]} / {response['product'][3]}');
 
         except:
             print('Something went wrong');
