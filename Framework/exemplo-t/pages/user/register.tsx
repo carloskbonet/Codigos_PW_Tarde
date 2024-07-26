@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import styles from '@/styles/register.module.css';
 import { useState } from "react";
 
@@ -67,6 +68,10 @@ export default function Register() {
                     <input className={styles.input} type="password" placeholder="Confirmação de Senha" onChange={(event) => {handleFormEdit(event , 'cPassword')}} /><br />
 
                     <input className={styles.sendBtn} type="submit" value="Criar Conta" />
+
+
+                    <br /><br />
+                    <Link href={`/user/login`}>Já tenho uma conta</Link>
 
                 </form>
             </div>
