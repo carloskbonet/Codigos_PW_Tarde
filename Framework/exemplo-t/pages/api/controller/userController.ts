@@ -1,4 +1,4 @@
-import { createUser, findUserByEmail, findUserByUsername } from '../model/user';
+import { createUser, findUserByEmail, findUserByUsername, findUserLogin } from '../model/user';
 
 export async function createUserC(_name:string , _email:string , _username:string , _password:string, _cPassword:string) {
     try {
@@ -28,6 +28,23 @@ export async function createUserC(_name:string , _email:string , _username:strin
 
     }
     catch (err) {
+        return { status: 500, message: 'Something went wrong' };
+    }
+}
+
+
+export async function login(_email:string , _password:string) {
+    try {
+        const userLogin = await findUserLogin(_email , _password);
+
+        if ( userLogin == undefined ) {
+            return { status: 404, message: 'Incorrect Email or Password' };
+        }
+        else {
+            return { status: 200, message: 'Logged In' };
+        }
+    }
+    catch(err) {
         return { status: 500, message: 'Something went wrong' };
     }
 }
