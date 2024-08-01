@@ -2,6 +2,8 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from '@/styles/register.module.css';
 import { useState } from "react";
+import { getCookie } from "cookies-next";
+import { checkToken } from "@/services/tokenConfig";
 
 export default function Register() {
 
@@ -78,4 +80,31 @@ export default function Register() {
 
         </main>
     );
+}
+
+export function getServerSideProps( { req , res }:any ) {
+    try {
+        const token = getCookie('authorization' , {req , res});
+
+        if ( !token ) {
+            throw new Error('Invalid Token');
+        }
+        else {
+            checkToken(token);
+        }
+
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/'
+            },
+            props: {}
+        }
+
+    }
+    catch(err){
+        return {
+            props: {}
+        }
+    }
 }

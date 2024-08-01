@@ -2,7 +2,7 @@ import { NextApiRequest , NextApiResponse } from "next";
 import { login } from "../../controller/userController";
 
 export default async ( req:NextApiRequest , res:NextApiResponse ) => {
-    if ( req.method != 'GET' ) {
+    if ( req.method != 'POST' ) {
         return res.status(403).json({ message: 'Method not allowed' });
     }
 
