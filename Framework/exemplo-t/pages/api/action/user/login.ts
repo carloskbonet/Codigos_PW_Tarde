@@ -11,5 +11,10 @@ export default async ( req:NextApiRequest , res:NextApiResponse ) => {
     // Enviar para o controller
     const response = await login(email , password);
 
-    return res.status( response.status ).json( response.message );
+    if ( response.status == 200 ) {
+        return res.status( response.status ).json( { message: response.message , token: response.token } );
+    }
+    else {
+        return res.status( response.status ).json( { message: response.message } );
+    }
 }
