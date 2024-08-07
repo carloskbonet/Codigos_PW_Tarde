@@ -4,8 +4,10 @@ import styles from '@/styles/register.module.css';
 import { useState } from "react";
 import { getCookie } from "cookies-next";
 import { checkToken } from "@/services/tokenConfig";
+import { useRouter } from "next/router";
 
 export default function Register() {
+    const router = useRouter();
 
     const [ formData , setFormData ] = useState(
     {
@@ -23,8 +25,6 @@ export default function Register() {
             ...formData,
             [field]: event.target.value
         });
-
-        console.log(formData);
     }
 
     async function formSubmit(event:any) {
@@ -39,7 +39,11 @@ export default function Register() {
 
             const responseJson = await response.json();
 
-            alert(`${response.status} \n ${responseJson}`);
+            alert(`${responseJson}`);
+
+            if ( response.status == 201 ) {
+                router.push(`/user/login`);
+            }
 
         }
         catch (err) {

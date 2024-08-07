@@ -4,8 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { setCookie , getCookie } from "cookies-next";
 import { checkToken } from "@/services/tokenConfig";
+import { useRouter } from "next/router";
 
 export default function Login() {
+    const router = useRouter();
+
     const [ formData , setFormData ] = useState({
         email: '',
         password: ''
@@ -30,11 +33,13 @@ export default function Login() {
 
             const responseJson = await response.json();
 
+            alert(`${responseJson.message}`);
+
             if ( response.status == 200 ) {
                 setCookie('authorization' , responseJson.token);
-            }
 
-            alert(`${response.status} \n${responseJson.message} \n${responseJson.token}`);
+                router.push(`/`);
+            }
 
         }
         catch(err) {
