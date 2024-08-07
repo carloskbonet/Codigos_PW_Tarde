@@ -1,3 +1,7 @@
+#main {
+    overflow-x: hidden;
+}
+
 .navBar {
     width: 100vw;
     height: 16vh;
@@ -44,7 +48,7 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 15% 85%;
 }
 
 .leftContainer {
@@ -55,7 +59,34 @@
 }
 
 .rightContainer {
-    background-color: rgb(229, 201, 147);
+    background-color: rgb(235, 215, 175);
     height: 100%;
     width: 100%;
+    padding: 1%;
+}
+
+.card {
+    width: 40%;
+    height: 38vh;
+    background-color: rgba(56, 58, 61, 0.527);
+    border: 1px solid black;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    padding: 1%;
+}
+
+.cardImg {
+    max-width: 100%;
+    max-height: 34vh;
+}
+
+.cardInfos {
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cardInfos h2 {
+    font-size: 24px;
+    font-weight: bold;
 }

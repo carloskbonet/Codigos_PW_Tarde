@@ -4,7 +4,7 @@ import styles from "@/styles/home.module.css"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <main id={styles.main} className="flex min-h-screen flex-col">
       {/* Barra superior de navegação */}
       <nav className={styles.navBar}>
         <img src="/pipoca.png" className={styles.icon} alt="" />
@@ -28,7 +28,16 @@ export default function Home() {
 
         {/* Painel direito */}
         <div className={styles.rightContainer}>
+            <div className={styles.card}>
+                <img src="/card.jfif" className={styles.cardImg} alt="" />
+                <div className={styles.cardInfos}>
+                  <h2>Nome do Filme</h2>
+                  <p>Avaliação</p>
+                  <p>Generos do Filme</p>
+                  <p>Descrição</p>
+                </div>
 
+            </div>
         </div>
 
       </div>
