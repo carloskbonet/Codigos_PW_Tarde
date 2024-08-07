@@ -1,5 +1,5 @@
 #main {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .navBar {
@@ -46,7 +46,8 @@
 
 .mainContainer {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     display: grid;
     grid-template-columns: 15% 85%;
 }
@@ -63,10 +64,12 @@
     height: 100%;
     width: 100%;
     padding: 1%;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 .card {
-    width: 40%;
+    width: 90%;
     height: 38vh;
     background-color: rgba(56, 58, 61, 0.527);
     border: 1px solid black;
@@ -74,6 +77,8 @@
     display: grid;
     grid-template-columns: 40% 60%;
     padding: 1%;
+    margin-top: 1.5%;
+    margin-left: 1%;
 }
 
 .cardImg {

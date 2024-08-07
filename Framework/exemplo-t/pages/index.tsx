@@ -38,6 +38,75 @@ export default function Home() {
                 </div>
 
             </div>
+
+
+            <div className={styles.card}>
+                <img src="/card.jfif" className={styles.cardImg} alt="" />
+                <div className={styles.cardInfos}>
+                  <h2>Nome do Filme</h2>
+                  <p>Avaliação</p>
+                  <p>Generos do Filme</p>
+                  <p>Descrição</p>
+                </div>
+
+            </div>
+
+
+            <div className={styles.card}>
+                <img src="/card.jfif" className={styles.cardImg} alt="" />
+                <div className={styles.cardInfos}>
+                  <h2>Nome do Filme</h2>
+                  <p>Avaliação</p>
+                  <p>Generos do Filme</p>
+                  <p>Descrição</p>
+                </div>
+
+            </div>
+
+
+            <div className={styles.card}>
+                <img src="/card.jfif" className={styles.cardImg} alt="" />
+                <div className={styles.cardInfos}>
+                  <h2>Nome do Filme</h2>
+                  <p>Avaliação</p>
+                  <p>Generos do Filme</p>
+                  <p>Descrição</p>
+                </div>
+
+            </div>
+
+            <div className={styles.card}>
+                <img src="/card.jfif" className={styles.cardImg} alt="" />
+                <div className={styles.cardInfos}>
+                  <h2>Nome do Filme</h2>
+                  <p>Avaliação</p>
+                  <p>Generos do Filme</p>
+                  <p>Descrição</p>
+                </div>
+
+            </div>
+
+            <div className={styles.card}>
+                <img src="/card.jfif" className={styles.cardImg} alt="" />
+                <div className={styles.cardInfos}>
+                  <h2>Nome do Filme</h2>
+                  <p>Avaliação</p>
+                  <p>Generos do Filme</p>
+                  <p>Descrição</p>
+                </div>
+
+            </div>
+
+            <div className={styles.card}>
+                <img src="/card.jfif" className={styles.cardImg} alt="" />
+                <div className={styles.cardInfos}>
+                  <h2>Nome do Filme</h2>
+                  <p>Avaliação</p>
+                  <p>Generos do Filme</p>
+                  <p>Descrição</p>
+                </div>
+
+            </div>
         </div>
 
       </div>
