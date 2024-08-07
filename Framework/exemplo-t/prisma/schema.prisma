@@ -24,3 +24,16 @@ model user {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
+
+
+model movie {
+  id  Int @id @unique @default(autoincrement())
+
+  name  String  @unique
+  releaseDate String
+  imageURL  String?
+  description String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
