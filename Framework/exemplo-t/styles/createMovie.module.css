@@ -1,0 +1,46 @@
+.formContainer {
+    padding: 1%;
+    background-color: rgb(255, 239, 228);
+    margin-left: 30%;
+    margin-right: 30%;
+    height: 100vh;
+    border: 1px solid rgba(0, 0, 0, 0.253);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+#input {
+    border: 1px solid black;
+    border-radius: 6px;
+    width: 50%;
+    height: 5vh;
+    margin-bottom: 4%;
+}
+
+#main {
+    overflow: none;
+    background-image: url('/background.png');
+    background-size: cover; 
+}
+
+.registerText {
+    font-size: 28px;
+    margin-top: 4%;
+    margin-bottom: 5%;
+    border: 1px solid black;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 4px;
+}
+
+.sendBtn {
+    background-color: rgb(74, 173, 74);
+    color: white;
+}
+
+.sendBtn:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
