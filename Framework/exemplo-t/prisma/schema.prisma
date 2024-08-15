@@ -32,6 +32,7 @@ model movie {
   name  String  @unique
   releaseDate String
   imageURL  String?
+  videoURL String?
   description String?
 
   created_at DateTime @default(now())
