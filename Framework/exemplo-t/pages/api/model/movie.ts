@@ -23,3 +23,9 @@ export async function findMovieByName(_name:string) {
 
     return movie;
 }
+
+export async function selectMovies() {
+    const movies = await prisma.movie.findMany();
+
+    return movies;
+}
