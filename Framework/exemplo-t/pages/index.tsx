@@ -1,11 +1,11 @@
 import { checkToken } from "@/services/tokenConfig";
 import { getCookie } from "cookies-next";
 import styles from "@/styles/home.module.css"
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
 
-  const [ data , setData ] = useState(undefined);
+  const [data, setData]: any = useState(undefined);
 
   async function fetchData() {
     try {
@@ -17,7 +17,7 @@ export default function Home() {
 
       setData(responseJson.data);
     }
-    catch(err){
+    catch (err) {
       console.log(err);
     }
   }
@@ -61,85 +61,28 @@ export default function Home() {
 
         {/* Painel direito */}
         <div className={styles.rightContainer}>
-            <div className={styles.card}>
+
+          {data != undefined && data instanceof Array ?
+
+            data.map(movie => (
+              <div className={styles.card}>
                 <img src="/card.jfif" className={styles.cardImg} alt="" />
                 <div className={styles.cardInfos}>
-                  <h2>Nome do Filme</h2>
-                  <p>Avaliação</p>
+                  <h2>{movie.name}</h2>
+                  <p>{movie.releaseDate}</p>
                   <p>Generos do Filme</p>
-                  <p>Descrição</p>
+                  <p>{movie.description}</p>
                 </div>
+              </div>
+            ))
 
-            </div>
+            :
 
+            <p>No movies Found</p>
 
-            <div className={styles.card}>
-                <img src="/card.jfif" className={styles.cardImg} alt="" />
-                <div className={styles.cardInfos}>
-                  <h2>Nome do Filme</h2>
-                  <p>Avaliação</p>
-                  <p>Generos do Filme</p>
-                  <p>Descrição</p>
-                </div>
-
-            </div>
+          }
 
 
-            <div className={styles.card}>
-                <img src="/card.jfif" className={styles.cardImg} alt="" />
-                <div className={styles.cardInfos}>
-                  <h2>Nome do Filme</h2>
-                  <p>Avaliação</p>
-                  <p>Generos do Filme</p>
-                  <p>Descrição</p>
-                </div>
-
-            </div>
-
-
-            <div className={styles.card}>
-                <img src="/card.jfif" className={styles.cardImg} alt="" />
-                <div className={styles.cardInfos}>
-                  <h2>Nome do Filme</h2>
-                  <p>Avaliação</p>
-                  <p>Generos do Filme</p>
-                  <p>Descrição</p>
-                </div>
-
-            </div>
-
-            <div className={styles.card}>
-                <img src="/card.jfif" className={styles.cardImg} alt="" />
-                <div className={styles.cardInfos}>
-                  <h2>Nome do Filme</h2>
-                  <p>Avaliação</p>
-                  <p>Generos do Filme</p>
-                  <p>Descrição</p>
-                </div>
-
-            </div>
-
-            <div className={styles.card}>
-                <img src="/card.jfif" className={styles.cardImg} alt="" />
-                <div className={styles.cardInfos}>
-                  <h2>Nome do Filme</h2>
-                  <p>Avaliação</p>
-                  <p>Generos do Filme</p>
-                  <p>Descrição</p>
-                </div>
-
-            </div>
-
-            <div className={styles.card}>
-                <img src="/card.jfif" className={styles.cardImg} alt="" />
-                <div className={styles.cardInfos}>
-                  <h2>Nome do Filme</h2>
-                  <p>Avaliação</p>
-                  <p>Generos do Filme</p>
-                  <p>Descrição</p>
-                </div>
-
-            </div>
         </div>
 
       </div>
@@ -147,6 +90,8 @@ export default function Home() {
     </main>
   );
 }
+
+
 
 export function getServerSideProps({ req, res }: any) {
   try {

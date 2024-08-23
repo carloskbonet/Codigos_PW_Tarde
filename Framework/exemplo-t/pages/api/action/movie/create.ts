@@ -9,7 +9,7 @@ export default async ( req:NextApiRequest , res:NextApiResponse ) => {
     const { name , releaseDate , imageURL , videoURL , description } = req.body;
 
     // Enviar para o controller
-    const response = await createMovieC(name , releaseDate , imageURL , videoURL , description);
+    const response = await createMovieC(name , releaseDate , description , imageURL , videoURL);
 
     console.log(response);
 
