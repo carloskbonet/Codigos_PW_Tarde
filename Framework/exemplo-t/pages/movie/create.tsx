@@ -4,6 +4,8 @@ import { useState } from "react";
 
 export default function createMovie() {
 
+    const [imageUpload , setImageUpload] = useState(undefined);
+
     const [ formData , setFormData ] = useState(
         {
             name: '',
@@ -14,6 +16,10 @@ export default function createMovie() {
         }
     );
 
+    function handleImageEdit(event:any) {
+        setImageUpload(event.target.files[0]);
+    }
+
     function handleFormEdit(event:any , field:string) {
         setFormData({
             ...formData,
@@ -23,12 +29,51 @@ export default function createMovie() {
 
     async function formSubmit(event:any) {
         event.preventDefault();
+
+        if ( imageUpload == undefined ) {
+            movieSubmit(event);
+            return;
+        }
+
+        try {
+            const img = new FormData();
+            img.append("image" , imageUpload);
+
+            const response = await fetch(`/api/action/movie/createImage`, {
+                method: 'POST',
+                body: img
+            });
+
+            const responseJson = await response.json();
+
+            if ( response.status != 200 ) {
+                alert(responseJson.message);
+            }
+            else {
+                // criar o filme
+
+                movieSubmit(event , responseJson.secure_url);
+            }
+        }
+        catch (err) {
+            alert(err);
+        }
+    }
+
+    async function movieSubmit(event:any , img = "") {
+        event.preventDefault();
         try {
             const response = await fetch(`/api/action/movie/create`,
                 {
                     method: "POST",
                     headers: { 'Content-type' : 'application/json' },
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify({
+                        name: formData.name,
+                        releaseDate: formData.releaseDate,
+                        description: formData.description,
+                        videoURL: formData.videoURL,
+                        imageURL: img
+                    })
                 }
             );
 
@@ -38,7 +83,7 @@ export default function createMovie() {
 
         }
         catch(err:any) {
-            console.log(err);
+            alert(err);
         }
     }
 
@@ -58,7 +103,7 @@ export default function createMovie() {
                     <input id={styles.input} type="date" onChange={(event) => {handleFormEdit(event, 'releaseDate')}} />
 
                     <p>Imagem do filme</p>
-                    <input id={styles.input} type="file" accept=".png .jpg . jpeg .jfif" />
+                    <input id={styles.input} type="file" accept=".png .jpg . jpeg .jfif" onChange={handleImageEdit} />
 
                     <br /><input id={styles.input} type="text" placeholder="Link para o trailer do filme (Youtube)" onChange={(event) => {handleFormEdit(event, 'videoURL')}} />
 

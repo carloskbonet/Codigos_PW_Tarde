@@ -66,7 +66,7 @@ export default function Home() {
 
             data.map(movie => (
               <div className={styles.card}>
-                <img src="/card.jfif" className={styles.cardImg} alt="" />
+                <img src={movie.imageURL} className={styles.cardImg} alt="" />
                 <div className={styles.cardInfos}>
                   <h2>{movie.name}</h2>
                   <p>{movie.releaseDate}</p>
