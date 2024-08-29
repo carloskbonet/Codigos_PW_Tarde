@@ -38,3 +38,14 @@ model movie {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
+
+
+model rating {
+  id  Int @id @unique @default(autoincrement())
+
+  value Int
+  comment String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
