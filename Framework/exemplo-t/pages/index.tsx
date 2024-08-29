@@ -1,10 +1,12 @@
 import { checkToken } from "@/services/tokenConfig";
-import { getCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 import styles from "@/styles/home.module.css"
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Home() {
-
+  const router = useRouter();
   const [data, setData]: any = useState(undefined);
 
   async function fetchData() {
@@ -26,17 +28,18 @@ export default function Home() {
     fetchData();
   }, [])
 
-  function exibirFilmes() {
-    console.log(data);
+  function logOut() {
+    deleteCookie('authorization');
+    router.push(`/user/login`);
+  }
+
+  function movieClick(movieName: string) {
+    router.push(`/movie/` + movieName);
   }
 
 
   return (
     <main id={styles.main} className="flex min-h-screen flex-col">
-      <button onClick={exibirFilmes}> Printar os filmes </button>
-
-
-
 
       {/* Barra superior de navegação */}
       <nav className={styles.navBar}>
@@ -47,7 +50,10 @@ export default function Home() {
           <button className={styles.send}>Enviar</button>
         </div>
 
-        <button className={styles.logoutBtn}>Logout</button>
+
+        <Link href={`/movie/create`} className={styles.createMovie}>Criar Filme</Link>
+        <button className={styles.logoutBtn} onClick={logOut}>Logout</button>
+
 
       </nav>
 
@@ -65,7 +71,7 @@ export default function Home() {
           {data != undefined && data instanceof Array ?
 
             data.map(movie => (
-              <div className={styles.card}>
+              <div onClick={() => { movieClick(movie.name) }} className={styles.card}>
                 <img src={movie.imageURL} className={styles.cardImg} alt="" />
                 <div className={styles.cardInfos}>
                   <h2>{movie.name}</h2>

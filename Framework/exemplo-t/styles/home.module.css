@@ -18,7 +18,7 @@
 }
 
 .searchContainer {
-    width: 70%;
+    width: 60%;
     height: 30%;
 }
 
@@ -37,11 +37,26 @@
     margin-left: 10%;
 }
 
+.createMovie {
+    font-size: 20px;
+    color: white;
+    border: 1px solid black;
+    padding: 0.4%;
+    border-radius: 6px;
+    background-color: rgb(88, 88, 235);
+}
+
+.createMovie:hover {
+    background-color: white;
+    color: black;
+}
+
 .logoutBtn {
     border: 1px solid black;
     padding: 1%;
     background-color: rgb(224, 155, 155);
     border-radius: 8px;
+    margin-left: 2%;
 }
 
 .mainContainer {
