@@ -1,28 +1,60 @@
 import styles from '@/styles/movie.module.css'
+import { useState , useEffect } from 'react';
 
 export default function movie({ movieName }: any) {
+    const [ data , setData ]:any = useState(undefined);
+
+    async function fetchData() {
+        try {
+            const response = await fetch(`/api/action/movie/find?name=` +movieName , {
+                method: 'GET'
+            });
+
+            const responseJson = await response.json();
+
+            setData(responseJson.data);
+        }
+        catch (err) {
+            console.log(err);
+            alert('Algo deu Errado');
+        }
+    }
+
+    useEffect(() => {
+
+        fetchData();
+
+    }, [])
 
     return (
         <main id={styles.main} className="flex min-h-screen flex-col">
+            { 
+            data !=  undefined ?
 
             <div className={styles.page}>
                 <div className={styles.movie}>
-                    <img src="/card.jfif" alt="" className={styles.img} />
+                    <img src={data.imageURL} alt="" className={styles.img} />
                     <div className={styles.movieInfos}>
-                        <h2>Nome do Filme</h2>
-                        <p>Data de Lançamento   </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <h2>{data.name}</h2>
+                        <p>{data.releaseDate}</p>
+                        <p>{data.description}</p>
                         <p>Generos</p>
                     </div>
                 </div>
 
-                <iframe className={styles.video} height="350" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                <iframe className={styles.video} height="350" src={`https://www.youtube.com/embed/`+data.videoURL}>
                 </iframe>
 
                 <div className="Avaliações">
 
                 </div>
             </div>
+
+            :
+
+            <p>Erro 404 Filme não encontrado</p>
+
+            }
         </main>
     );
 }
