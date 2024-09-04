@@ -54,3 +54,46 @@
     background-color: rgba(0, 0, 0, 0.712);
     border: 1px solid rgba(255, 255, 255, 0.363);
 }
+
+.formRating {
+    border: 1px solid white;
+    padding: 1%;
+    margin-bottom: 10%;
+    border-radius: 6px;
+}
+
+.value {
+    background-color: rgba(255, 255, 255, 0.452);
+    color: white;
+    border-radius: 6px;
+    width: 20%;
+    padding-left: 1%;
+    height: 5%;
+}
+
+.comment {
+    margin-top: 1%;
+    background-color: rgba(255, 255, 255, 0.452);
+    color: white;
+    border-radius: 6px;
+    width: 40%;
+    padding: 1%;
+    resize: none;
+}
+
+.formRating h2 {
+    color: white;
+    padding: 1%;
+}
+
+.submitBtn {
+    width: 40%;
+    height: 10%;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.submitBtn:hover {
+    background-color: rgba(255, 255, 255, 0.356);
+    color: white;    
+}

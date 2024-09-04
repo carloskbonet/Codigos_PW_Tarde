@@ -3,7 +3,7 @@ import { login } from "../../controller/userController";
 
 export default async ( req:NextApiRequest , res:NextApiResponse ) => {
     if ( req.method != 'POST' ) {
-        return res.status(403).json({ message: 'Method not allowed' });
+        return res.status(405).json({ message: 'Method not allowed' });
     }
 
     const { email , password } = req.body;
