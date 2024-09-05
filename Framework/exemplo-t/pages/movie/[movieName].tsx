@@ -1,8 +1,59 @@
+import { checkToken } from '@/services/tokenConfig';
 import styles from '@/styles/movie.module.css'
+import { getCookie } from 'cookies-next';
 import { useState , useEffect } from 'react';
 
 export default function movie({ movieName }: any) {
+
+    // Formulário de avaliação
+    const [ ratingForm , setRatingForm ] = useState(
+        {
+            value: 0,
+            comment: ''
+        }
+    );
+
     const [ data , setData ]:any = useState(undefined);
+
+
+    function handleFormEdit(event:any , field:string) {
+        setRatingForm({
+            ...ratingForm,
+            [field] : event.target.value
+        });
+    }
+
+    async function formSubmit(e:any) {
+        e.preventDefault();
+
+        try {
+            const cookieAuth = getCookie('authorization');
+
+            const tokenInfos = checkToken(cookieAuth);
+
+
+            const response = await fetch(`/api/action/rating/create`, {
+                method: 'POST',
+                headers: { 'Content-type' : 'application/json' },
+                body: JSON.stringify({
+                    value: Number(ratingForm.value),
+                    comment: ratingForm.comment,
+                    email: tokenInfos.email,
+                    movieName: movieName
+                })
+            });
+
+            const responseJson = await response.json();
+
+            alert(responseJson.message);
+
+        }
+        catch (err) {
+            console.log(err);
+            alert(err);
+        }
+    }
+
 
     async function fetchData() {
         try {
@@ -45,12 +96,30 @@ export default function movie({ movieName }: any) {
                 <iframe className={styles.video} height="350" src={`https://www.youtube.com/embed/`+data.videoURL}>
                 </iframe>
 
-                <div className={styles.formRating}>
+                <form className={styles.formRating} onSubmit={formSubmit}>
                     <h2>Digite uma nota (0 a 5)</h2>
-                    <input className={styles.value} type="number" value='0' /><br />
-                    <textarea className={styles.comment} placeholder='Digite seu Comentário' ></textarea><br />
+                    <input onChange={(e) => { handleFormEdit(e , 'value') }} className={styles.value} type="number"/><br />
+                    <textarea onChange={(e) => { handleFormEdit(e , 'comment') }} className={styles.comment} placeholder='Digite seu Comentário' ></textarea><br />
                     <input className={styles.submitBtn} type="submit" />
 
+                </form>
+
+                <div className={styles.ratings}>
+                    <div className={styles.ratingCard}>
+                        <label className={styles.rValue}>4/5 Recomendação</label><br />
+                        <label className={styles.rUser}>[] User 1</label><br />
+                        <label className={styles.rComment}>Comentário do User 1</label>
+                    </div>
+                    <div className={styles.ratingCard}>
+                        <label className={styles.rValue}>4/5 Recomendação</label><br />
+                        <label className={styles.rUser}>[] User 1</label><br />
+                        <label className={styles.rComment}>Comentário do User 1</label>
+                    </div>
+                    <div className={styles.ratingCard}>
+                        <label className={styles.rValue}>4/5 Recomendação</label><br />
+                        <label className={styles.rUser}>[] User 1</label><br />
+                        <label className={styles.rComment}>Comentário do User 1</label>
+                    </div>
                 </div>
             </div>
 

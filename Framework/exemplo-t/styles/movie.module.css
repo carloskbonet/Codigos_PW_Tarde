@@ -58,7 +58,7 @@
 .formRating {
     border: 1px solid white;
     padding: 1%;
-    margin-bottom: 10%;
+    margin-bottom: 4%;
     border-radius: 6px;
 }
 
@@ -96,4 +96,25 @@
 .submitBtn:hover {
     background-color: rgba(255, 255, 255, 0.356);
     color: white;    
+}
+
+.ratings {
+    margin-bottom: 10%;
+    border: 1px solid rgba(255, 255, 255, 0.466);
+    border-radius: 6px;
+    padding: 1%;
+    margin-left: 0.1%;
+    margin-right: 0.1%;
+}
+
+.ratingCard {
+    border: 1px solid rgba(255, 255, 255, 0.445);
+    border-radius: 6px;
+    color: white;   
+    padding: 1%;
+    margin-bottom: 2%;
+}
+
+.ratingCard label {
+    border-bottom: 1px solid white;
 }
