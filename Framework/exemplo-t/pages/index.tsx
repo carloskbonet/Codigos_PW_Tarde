@@ -37,13 +37,16 @@ export default function Home() {
     router.push(`/movie/` + movieName);
   }
 
+  function iconClick() {
+    router.push(`/movie/create`);
+  }
 
   return (
     <main id={styles.main} className="flex min-h-screen flex-col">
 
       {/* Barra superior de navegação */}
       <nav className={styles.navBar}>
-        <img src="/pipoca.png" className={styles.icon} alt="" />
+        <img onClick={iconClick} src="/pipoca.png" className={styles.icon} alt="" />
 
         <div className={styles.searchContainer}>
           <input type="text" className={styles.searchBar} />

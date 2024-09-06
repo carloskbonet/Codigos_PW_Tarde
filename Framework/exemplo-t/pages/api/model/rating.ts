@@ -32,3 +32,17 @@ export async function findRatingByUser(_userId:number , _movieId:number) {
 
     return rating;
 }
+
+export async function updateRatingModel(_id:number , _value:number , _comment:string) {
+    const rating = await prisma.rating.update({
+        where: {
+            id: _id
+        },
+        data: {
+            value: _value,
+            comment: _comment
+        }
+    });
+
+    return rating;
+}

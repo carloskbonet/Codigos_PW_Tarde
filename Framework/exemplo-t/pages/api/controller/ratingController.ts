@@ -1,5 +1,5 @@
 import { findMovieByName } from "../model/movie";
-import { createRatingModel, findRatingByUser } from "../model/rating";
+import { createRatingModel, findRatingByUser, updateRatingModel } from "../model/rating";
 import { findUserByEmail } from "../model/user";
 
 export async function createRating( _value:number, _email:string , _movieName:string , _comment = "" ) {
@@ -20,7 +20,9 @@ export async function createRating( _value:number, _email:string , _movieName:st
         const ratingByUser = await findRatingByUser(userByEmail.id , movieByName.id);
 
         if ( ratingByUser != undefined ) {
-            return { status: 400, message: 'Rating already exist' }
+            const updateRating = await updateRatingModel(ratingByUser.id , _value , _comment);
+
+            return { status: 200, message: 'Rating updated' , data: updateRating }
         }
 
         const response = await createRatingModel(_value, _comment , userByEmail.id , movieByName.id);

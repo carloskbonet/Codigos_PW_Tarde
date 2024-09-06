@@ -108,13 +108,29 @@
 }
 
 .ratingCard {
-    border: 1px solid rgba(255, 255, 255, 0.445);
+    border: 2px solid rgb(94, 92, 255);
     border-radius: 6px;
     color: white;   
-    padding: 1%;
+    padding: 3%;
     margin-bottom: 2%;
 }
 
-.ratingCard label {
-    border-bottom: 1px solid white;
+.ratingCard .rValue {
+    text-align: right;
+}
+
+.rInfos {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-right: 10%;
+    font-size: 18px;
+}
+
+.rValue {
+    text-align: right;
+}
+
+.rComment {
+    border-top: 1px solid rgba(255, 255, 255, 0.603);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.623);
 }
