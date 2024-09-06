@@ -11,7 +11,5 @@ export default async ( req:NextApiRequest , res:NextApiResponse ) => {
     // Enviar para o controller
     const response = await createMovieC(name , releaseDate , description , imageURL , videoURL);
 
-    console.log(response);
-
-    return res.status(response.status).json(response.message);
+    return res.status(response.status).json( { message: response.message } );
 }
