@@ -8,6 +8,35 @@ import { useRouter } from "next/router";
 export default function Home() {
   const router = useRouter();
   const [data, setData]: any = useState(undefined);
+  // Constante para salvar todos os filmes
+  const [ saveData , setSaveData ]:Array<any> = useState(undefined);
+
+  // Constante para salvar o texto da barra de pesquisa
+  const [ name , setName ] = useState('');
+
+  function searchFilter(array:any , text:string) {
+    if ( text == '' ) {
+      return array;
+    }
+    else {
+      return array.filter( (singleMovie:any) => singleMovie.name.toLowerCase().includes( text.toLowerCase() ) );
+    }
+  }
+
+  function formSubmit(event:any) {
+    event.preventDefault();
+    try {
+
+      const filteredMovies = searchFilter( saveData , name );
+
+      setData(filteredMovies);
+
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
 
   async function fetchData() {
     try {
@@ -18,6 +47,7 @@ export default function Home() {
       const responseJson = await response.json();
 
       setData(responseJson.data);
+      setSaveData(responseJson.data);
     }
     catch (err) {
       console.log(err);
@@ -38,7 +68,8 @@ export default function Home() {
   }
 
   function iconClick() {
-    router.push(`/movie/create`);
+    router.push(`/`);
+    router.reload();
   }
 
   return (
@@ -48,10 +79,10 @@ export default function Home() {
       <nav className={styles.navBar}>
         <img onClick={iconClick} src="/pipoca.png" className={styles.icon} alt="" />
 
-        <div className={styles.searchContainer}>
-          <input type="text" className={styles.searchBar} />
+        <form className={styles.searchContainer} onSubmit={formSubmit} >
+          <input type="text" className={styles.searchBar} onChange={(e) => { setName(e.target.value) }} />
           <button className={styles.send}>Enviar</button>
-        </div>
+        </form>
 
 
         <Link href={`/movie/create`} className={styles.createMovie}>Criar Filme</Link>

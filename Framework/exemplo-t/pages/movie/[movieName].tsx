@@ -104,7 +104,7 @@ export default function movie({ movieName }: any) {
                             <input onChange={(e) => { handleFormEdit(e, 'value') }} className={styles.value} type="number" /><br />
                             <textarea onChange={(e) => { handleFormEdit(e, 'comment') }} className={styles.comment} placeholder='Digite seu Comentário' ></textarea><br />
                             <input className={styles.submitBtn} type="submit" />
-
+                            <button>Excluir Comentário</button>
                         </form>
 
                         <div className={styles.ratings}>
