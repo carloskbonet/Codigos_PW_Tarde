@@ -23,6 +23,7 @@ export default function movie({ movieName }: any) {
             ...ratingForm,
             [field]: event.target.value
         });
+        console.log(ratingForm)
     }
 
     async function formSubmit(e: any) {
@@ -80,6 +81,38 @@ export default function movie({ movieName }: any) {
 
     }, [])
 
+
+    async function deleteComment(event:any) {
+        event.preventDefault();
+        try {
+
+            const cookieAuth = getCookie('authorization');
+
+            const tokenInfos = checkToken(cookieAuth);
+
+            const response = await fetch(`/api/action/rating/delete`, {
+                method: 'DELETE',
+                headers: { 'Content-type' : 'application/json' },
+                body: JSON.stringify({
+                    email: tokenInfos.email,
+                    moviename: movieName
+                })
+            });
+
+            const responseJson = await response.json();
+
+            alert(responseJson.message);
+            router.reload();
+
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
+
+
+
     return (
         <main id={styles.main} className="flex min-h-screen flex-col">
             {
@@ -100,34 +133,57 @@ export default function movie({ movieName }: any) {
                         </iframe>
 
                         <form className={styles.formRating} onSubmit={formSubmit}>
-                            <h2>Digite uma nota (0 a 5)</h2>
-                            <input onChange={(e) => { handleFormEdit(e, 'value') }} className={styles.value} type="number" /><br />
+
+                            <div className={styles.star_rating}>
+
+                                <input className={styles.radio_hide} type="radio" id='star_5' name='stars' value='5' onChange={(e) => { handleFormEdit(e, 'value') }} />
+                                <label className={styles.radio_star} htmlFor='star_5' ></label>
+
+                                <input className={styles.radio_hide} type="radio" id='star_4' name='stars' value='4' onChange={(e) => { handleFormEdit(e, 'value') }} />
+                                <label className={styles.radio_star} htmlFor='star_4' ></label>
+
+                                <input className={styles.radio_hide} type="radio" id='star_3' name='stars' value='3' onChange={(e) => { handleFormEdit(e, 'value') }} />
+                                <label className={styles.radio_star} htmlFor='star_3' ></label>
+
+                                <input className={styles.radio_hide} type="radio" id='star_2' name='stars' value='2' onChange={(e) => { handleFormEdit(e, 'value') }} />
+                                <label className={styles.radio_star} htmlFor='star_2' ></label>
+
+                                <input className={styles.radio_hide} type="radio" id='star_1' name='stars' value='1' onChange={(e) => { handleFormEdit(e, 'value') }} />
+                                <label className={styles.radio_star} htmlFor='star_1' ></label>
+
+
+                            </div>
+
+
                             <textarea onChange={(e) => { handleFormEdit(e, 'comment') }} className={styles.comment} placeholder='Digite seu Comentário' ></textarea><br />
                             <input className={styles.submitBtn} type="submit" />
-                            <button>Excluir Comentário</button>
+                            
+                            
+                            <br /><br />
+                            <button onClick={deleteComment} className={styles.submitBtn}>Excluir Comentário</button>
                         </form>
 
                         <div className={styles.ratings}>
 
-                        {
-                            
-                            data.ratings.map( (rating:any) => (
+                            {
 
-                            <div className={styles.ratingCard}>
-                                <div className={styles.rInfos}>
-                                    <label className={styles.rUser}> {rating.user.username} </label>
-                                    <label className={styles.rValue}> {rating.value} /5 Recomendação</label><br />
-                                </div>
-                                <div className={styles.rComment}>
-                                    <label>{rating.comment}</label>
-                                </div>
-                            </div>
+                                data.ratings.map((rating: any) => (
 
-
-                             ) )
+                                    <div className={styles.ratingCard}>
+                                        <div className={styles.rInfos}>
+                                            <label className={styles.rUser}> {rating.user.username} </label>
+                                            <label className={styles.rValue}> {rating.value} /5 Recomendação</label><br />
+                                        </div>
+                                        <div className={styles.rComment}>
+                                            <label>{rating.comment}</label>
+                                        </div>
+                                    </div>
 
 
-                        }
+                                ))
+
+
+                            }
 
                         </div>
                     </div>

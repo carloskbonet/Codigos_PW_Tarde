@@ -95,7 +95,7 @@
 
 .submitBtn:hover {
     background-color: rgba(255, 255, 255, 0.356);
-    color: white;    
+    color: white;
 }
 
 .ratings {
@@ -110,7 +110,7 @@
 .ratingCard {
     border: 2px solid rgb(94, 92, 255);
     border-radius: 6px;
-    color: white;   
+    color: white;
     padding: 3%;
     margin-bottom: 2%;
 }
@@ -133,4 +133,39 @@
 .rComment {
     border-top: 1px solid rgba(255, 255, 255, 0.603);
     border-bottom: 1px solid rgba(255, 255, 255, 0.623);
+}
+
+
+
+
+.star_rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+
+.radio_hide {
+    position: fixed;
+    opacity: 0;
+}
+
+.radio_star {
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.452);
+}
+
+.radio_star:before {
+    content: '★';
+    display: inline-block;
+    font-size: 30px;
+}
+
+.radio_star:hover ,
+.radio_star:hover~.radio_star {
+    color: goldenrod;
+}
+
+.radio_hide:checked~.radio_star {
+    color: gold;
 }

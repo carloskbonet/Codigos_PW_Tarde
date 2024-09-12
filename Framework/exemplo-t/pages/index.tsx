@@ -72,6 +72,15 @@ export default function Home() {
     router.reload();
   }
 
+  function dateFormat(_date:string) {
+    // data esperada : 2024-09-12T17:19
+    const [ date , time ] = _date.split("T");
+    const [ year , month , day ] = date.split("-");
+    
+    return `${day}/${month}/${year}`;
+  }
+
+
   return (
     <main id={styles.main} className="flex min-h-screen flex-col">
 
@@ -109,7 +118,7 @@ export default function Home() {
                 <img src={movie.imageURL} className={styles.cardImg} alt="" />
                 <div className={styles.cardInfos}>
                   <h2>{movie.name}</h2>
-                  <p>{movie.releaseDate}</p>
+                  <p>{dateFormat(movie.releaseDate)}</p>
                   <p>Generos do Filme</p>
                   <p>{movie.description}</p>
                 </div>
