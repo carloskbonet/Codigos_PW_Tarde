@@ -44,3 +44,12 @@
     color: black;
     cursor: pointer;
 }
+
+.checkboxBox {
+    text-align: left;
+    margin-left: 40%;
+}
+
+.checkboxBox label {
+    margin-left: 2%;
+}

@@ -14,12 +14,12 @@ datasource db {
 }
 
 model user {
-  id  Int @id @unique @default(autoincrement())
+  id Int @id @unique @default(autoincrement())
 
-  name  String?
-  email String  @unique
-  username  String  @unique
-  password  String
+  name     String?
+  email    String  @unique
+  username String  @unique
+  password String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -27,34 +27,44 @@ model user {
   ratings rating[]
 }
 
-
 model movie {
-  id  Int @id @unique @default(autoincrement())
+  id Int @id @unique @default(autoincrement())
 
-  name  String  @unique
+  name        String  @unique
   releaseDate String
-  imageURL  String?
-  videoURL String?
+  imageURL    String?
+  videoURL    String?
   description String?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
   ratings rating[]
+  genres genre[]
 }
 
-
 model rating {
-  id  Int @id @unique @default(autoincrement())
+  id Int @id @unique @default(autoincrement())
 
-  value Int
+  value   Int
   comment String?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
   userId  Int
-  user  user  @relation(fields: [userId] , references: [id])
+  user    user  @relation(fields: [userId], references: [id])
   movieId Int
-  movie movie @relation(fields: [movieId] , references: [id])
+  movie   movie @relation(fields: [movieId], references: [id])
+}
+
+model genre {
+  id Int @id @unique @default(autoincrement())
+
+  name String @unique
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  movies movie[]
 }
