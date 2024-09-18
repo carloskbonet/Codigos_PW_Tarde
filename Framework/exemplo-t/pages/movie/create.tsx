@@ -10,7 +10,7 @@ export default function createMovie() {
     const [genres, setGenres]: any = useState(undefined);
 
     // Armazena os generos SELECIONADOS
-    var selectedGenres: Array<number> = [];
+    var selectedGenres: Array<string> = [];
 
     const [formData, setFormData] = useState(
         {
@@ -22,12 +22,12 @@ export default function createMovie() {
         }
     );
 
-    function handleCheckboxEdit(event:any , id:number) {
+    function handleCheckboxEdit(event:any , name:string) {
         if ( event.target.checked  ) {
-            selectedGenres.push(Number(id));
+            selectedGenres.push(name);
         }
         else {
-            const index = selectedGenres.indexOf(Number(id));
+            const index = selectedGenres.indexOf(name);
 
             if ( index != undefined )
                 selectedGenres.splice(index , 1);
@@ -111,14 +111,15 @@ export default function createMovie() {
                         releaseDate: formData.releaseDate,
                         description: formData.description,
                         videoURL: formData.videoURL,
-                        imageURL: img
+                        imageURL: img,
+                        genres: selectedGenres
                     })
                 }
             );
 
             const responseJson = await response.json();
 
-            alert(`${responseJson}`);
+            alert(`${responseJson.message}`);
 
         }
         catch (err: any) {
@@ -157,7 +158,7 @@ export default function createMovie() {
                                 genres.map(genre => (
 
                                     <div className={styles.checkboxBox}>
-                                        <input type="checkbox"  onChange={(e) => {handleCheckboxEdit(e , genre.id)}}  />
+                                        <input type="checkbox"  onChange={(e) => {handleCheckboxEdit(e , genre.name)}}  />
                                         <label>{genre.name}</label>
                                     </div>
 

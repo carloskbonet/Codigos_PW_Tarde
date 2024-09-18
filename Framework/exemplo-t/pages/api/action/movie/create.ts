@@ -6,10 +6,10 @@ export default async ( req:NextApiRequest , res:NextApiResponse ) => {
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    const { name , releaseDate , imageURL , videoURL , description } = req.body;
+    const { name , releaseDate , imageURL , videoURL , description , genres } = req.body;
 
     // Enviar para o controller
-    const response = await createMovieC(name , releaseDate , description , imageURL , videoURL);
+    const response = await createMovieC(name , releaseDate , genres , description , imageURL , videoURL);
 
     return res.status(response.status).json( { message: response.message } );
 }

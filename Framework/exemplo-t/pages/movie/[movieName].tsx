@@ -125,7 +125,20 @@ export default function movie({ movieName }: any) {
                                 <h2>{data.name}</h2>
                                 <p>{data.releaseDate}</p>
                                 <p>{data.description}</p>
-                                <p>Generos</p>
+                                
+                                {
+                                    data.genres != undefined ?
+
+                                    data.genres.map( (genre:any) => (
+                                        <p>{genre.name}</p>
+                                    ) )
+
+                                    :
+
+                                    <p>Sem Generos</p>
+
+                                }
+
                             </div>
                         </div>
 

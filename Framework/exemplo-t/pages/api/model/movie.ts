@@ -1,13 +1,30 @@
 import { prisma } from "@/db";
 
-export async function createMovie(_name:string , _releaseDate: string , _imageURL: string , _videoURL: string, _description:string) {
+export async function createMovie(_name:string , _releaseDate: string, _genres: Array<number> , _imageURL: string , _videoURL: string, _description:string) {
+    
+    var connectGenres:Array<any> = [];
+
+    _genres.map( genre => (
+
+        connectGenres.push(
+            {
+                id: genre
+            }
+        )
+
+    ) );
+    
+    
     const movie = await prisma.movie.create({
         data: {
             name: _name,
             releaseDate: _releaseDate,
             imageURL: _imageURL,
             videoURL: _videoURL,
-            description: _description
+            description: _description,
+            genres: {
+                connect: connectGenres
+            }
         }
     });
 
@@ -24,7 +41,8 @@ export async function findMovieByName(_name:string) {
                 include: {
                     user: true
                 }
-            }
+            },
+            genres: true
         }
     });
 

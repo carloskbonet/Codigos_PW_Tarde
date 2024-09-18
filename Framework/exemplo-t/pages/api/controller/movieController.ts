@@ -1,7 +1,8 @@
 import { createMovie , findMovieByName , selectMovies } from "../model/movie";
+import { findGenreByName } from "../model/genre";
 
 
-export async function createMovieC(_name:string , _releaseDate: string , _description:string,  _imageURL="" , _videoURL="") {
+export async function createMovieC(_name:string , _releaseDate: string , _genres: Array<any> ,  _description:string,  _imageURL="" , _videoURL="") {
     try {
         const movieByName = await findMovieByName(_name);
 
@@ -9,7 +10,19 @@ export async function createMovieC(_name:string , _releaseDate: string , _descri
             return { status: 400, message: 'Name already registered' };
         }
 
-        const response = await createMovie(_name , _releaseDate , _imageURL , _videoURL , _description);
+        var verifiedGenres = [];
+
+        for ( let i=0; i < _genres.length; i ++ ) {
+            let genreByName = await findGenreByName(_genres[i]);
+            
+            if ( genreByName == undefined ) {
+                return { status: 404, message: 'Genre not found' };
+            }
+
+            verifiedGenres.push(genreByName.id);
+        }
+
+        const response = await createMovie(_name , _releaseDate, verifiedGenres , _imageURL , _videoURL , _description);
 
         return { status: 201, message: 'Movie created', data: response };
     }
