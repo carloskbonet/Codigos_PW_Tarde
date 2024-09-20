@@ -1,6 +1,9 @@
 import Head from "next/head";
 import styles from "@/styles/createMovie.module.css"
 import { useEffect, useState } from "react";
+import Navbar from "@/components/Navbar";
+import Layout from "@/components/Layout";
+import Link from "next/link";
 
 export default function createMovie() {
 
@@ -22,15 +25,15 @@ export default function createMovie() {
         }
     );
 
-    function handleCheckboxEdit(event:any , name:string) {
-        if ( event.target.checked  ) {
+    function handleCheckboxEdit(event: any, name: string) {
+        if (event.target.checked) {
             selectedGenres.push(name);
         }
         else {
             const index = selectedGenres.indexOf(name);
 
-            if ( index != undefined )
-                selectedGenres.splice(index , 1);
+            if (index != undefined)
+                selectedGenres.splice(index, 1);
         }
     }
 
@@ -133,7 +136,12 @@ export default function createMovie() {
                 <title>Cadastro de Filmes</title>
             </Head>
 
+            <Navbar>
+                
+            </Navbar>
+
             <div>
+
                 <form className={styles.formContainer} onSubmit={formSubmit}>
                     <h2 className={styles.registerText}>Cadastrar Filmes</h2>
 
@@ -158,7 +166,7 @@ export default function createMovie() {
                                 genres.map(genre => (
 
                                     <div className={styles.checkboxBox}>
-                                        <input type="checkbox"  onChange={(e) => {handleCheckboxEdit(e , genre.name)}}  />
+                                        <input type="checkbox" onChange={(e) => { handleCheckboxEdit(e, genre.name) }} />
                                         <label>{genre.name}</label>
                                     </div>
 

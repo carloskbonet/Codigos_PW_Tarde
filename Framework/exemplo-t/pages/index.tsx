@@ -4,30 +4,31 @@ import styles from "@/styles/home.module.css"
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   const router = useRouter();
   const [data, setData]: any = useState(undefined);
   // Constante para salvar todos os filmes
-  const [ saveData , setSaveData ]:Array<any> = useState(undefined);
+  const [saveData, setSaveData]: Array<any> = useState(undefined);
 
   // Constante para salvar o texto da barra de pesquisa
-  const [ name , setName ] = useState('');
+  const [name, setName] = useState('');
 
-  function searchFilter(array:any , text:string) {
-    if ( text == '' ) {
+  function searchFilter(array: any, text: string) {
+    if (text == '') {
       return array;
     }
     else {
-      return array.filter( (singleMovie:any) => singleMovie.name.toLowerCase().includes( text.toLowerCase() ) );
+      return array.filter((singleMovie: any) => singleMovie.name.toLowerCase().includes(text.toLowerCase()));
     }
   }
 
-  function formSubmit(event:any) {
+  function formSubmit(event: any) {
     event.preventDefault();
     try {
 
-      const filteredMovies = searchFilter( saveData , name );
+      const filteredMovies = searchFilter(saveData, name);
 
       setData(filteredMovies);
 
@@ -58,25 +59,16 @@ export default function Home() {
     fetchData();
   }, [])
 
-  function logOut() {
-    deleteCookie('authorization');
-    router.push(`/user/login`);
-  }
 
   function movieClick(movieName: string) {
     router.push(`/movie/` + movieName);
   }
 
-  function iconClick() {
-    router.push(`/`);
-    router.reload();
-  }
-
-  function dateFormat(_date:string) {
+  function dateFormat(_date: string) {
     // data esperada : 2024-09-12T17:19
-    const [ date , time ] = _date.split("T");
-    const [ year , month , day ] = date.split("-");
-    
+    const [date, time] = _date.split("T");
+    const [year, month, day] = date.split("-");
+
     return `${day}/${month}/${year}`;
   }
 
@@ -85,20 +77,18 @@ export default function Home() {
     <main id={styles.main} className="flex min-h-screen flex-col">
 
       {/* Barra superior de navegação */}
-      <nav className={styles.navBar}>
-        <img onClick={iconClick} src="/pipoca.png" className={styles.icon} alt="" />
+
+      <Navbar>
 
         <form className={styles.searchContainer} onSubmit={formSubmit} >
           <input type="text" className={styles.searchBar} onChange={(e) => { setName(e.target.value) }} />
           <button className={styles.send}>Enviar</button>
         </form>
 
-
-        <Link href={`/movie/create`} className={styles.createMovie}>Criar Filme</Link>
-        <button className={styles.logoutBtn} onClick={logOut}>Logout</button>
+      </Navbar>
 
 
-      </nav>
+
 
       {/* Container principal. Ele vai conter o GRID */}
       <div className={styles.mainContainer}>

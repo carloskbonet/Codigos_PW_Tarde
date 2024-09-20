@@ -39,7 +39,7 @@ export default function Register() {
 
             const responseJson = await response.json();
 
-            alert(`${responseJson}`);
+            alert(`${responseJson.message}`);
 
             if ( response.status == 201 ) {
                 router.push(`/user/login`);

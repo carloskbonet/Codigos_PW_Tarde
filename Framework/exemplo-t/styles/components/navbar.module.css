@@ -1,0 +1,58 @@
+
+.navBar {
+    width: 100vw;
+    height: 16vh;
+    background-color: rgb(133, 133, 255);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.63);
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 6%;
+    border-radius: 100px;
+    margin-left: 10%;
+}
+
+.searchContainer {
+    width: 60%;
+    height: 30%;
+}
+
+.send {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: 6%;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.searchBar {
+    width: 60%;
+    height: 100%;
+    border-radius: 10px;
+    margin-left: 10%;
+    padding-left: 0.5%;
+}
+
+.createMovie {
+    font-size: 20px;
+    color: white;
+    border: 1px solid black;
+    padding: 0.4%;
+    border-radius: 6px;
+    background-color: rgb(88, 88, 235);
+}
+
+.createMovie:hover {
+    background-color: white;
+    color: black;
+}
+
+.logoutBtn {
+    border: 1px solid black;
+    padding: 1%;
+    background-color: rgb(224, 155, 155);
+    border-radius: 8px;
+    margin-left: 2%;
+}

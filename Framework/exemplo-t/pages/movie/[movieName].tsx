@@ -3,6 +3,7 @@ import styles from '@/styles/movie.module.css'
 import { getCookie } from 'cookies-next';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Navbar from '@/components/Navbar';
 
 export default function movie({ movieName }: any) {
     const router = useRouter();
@@ -115,6 +116,10 @@ export default function movie({ movieName }: any) {
 
     return (
         <main id={styles.main} className="flex min-h-screen flex-col">
+            <Navbar>
+                
+            </Navbar>
+
             {
                 data != undefined ?
 
