@@ -3,6 +3,7 @@ import styles from '@/styles/movie.module.css'
 import { getCookie } from 'cookies-next';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Navbar from '@/components/Navbar';
 
 export default function movie({ movieName }: any) {
     const router = useRouter();
@@ -82,7 +83,7 @@ export default function movie({ movieName }: any) {
     }, [])
 
 
-    async function deleteComment(event:any) {
+    async function deleteComment(event: any) {
         event.preventDefault();
         try {
 
@@ -92,7 +93,7 @@ export default function movie({ movieName }: any) {
 
             const response = await fetch(`/api/action/rating/delete`, {
                 method: 'DELETE',
-                headers: { 'Content-type' : 'application/json' },
+                headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify({
                     email: tokenInfos.email,
                     moviename: movieName
@@ -115,27 +116,40 @@ export default function movie({ movieName }: any) {
 
     return (
         <main id={styles.main} className="flex min-h-screen flex-col">
+            <Navbar>
+
+            </Navbar>
             {
+
                 data != undefined ?
 
                     <div className={styles.page}>
+                        <style>
+                            {
+                                `
+                                #main {
+                                    font-size:100px;
+                                }
+                                `
+                            }
+                        </style>
                         <div className={styles.movie}>
                             <img src={data.imageURL} alt="" className={styles.img} />
                             <div className={styles.movieInfos}>
                                 <h2>{data.name}</h2>
                                 <p>{data.releaseDate}</p>
                                 <p>{data.description}</p>
-                                
+
                                 {
                                     data.genres != undefined ?
 
-                                    data.genres.map( (genre:any) => (
-                                        <p>{genre.name}</p>
-                                    ) )
+                                        data.genres.map((genre: any) => (
+                                            <p>{genre.name}</p>
+                                        ))
 
-                                    :
+                                        :
 
-                                    <p>Sem Generos</p>
+                                        <p>Sem Generos</p>
 
                                 }
 
@@ -170,8 +184,8 @@ export default function movie({ movieName }: any) {
 
                             <textarea onChange={(e) => { handleFormEdit(e, 'comment') }} className={styles.comment} placeholder='Digite seu Comentário' ></textarea><br />
                             <input className={styles.submitBtn} type="submit" />
-                            
-                            
+
+
                             <br /><br />
                             <button onClick={deleteComment} className={styles.submitBtn}>Excluir Comentário</button>
                         </form>

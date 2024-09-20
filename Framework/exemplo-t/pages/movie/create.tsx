@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "@/styles/createMovie.module.css"
 import { useEffect, useState } from "react";
+import Navbar from "@/components/Navbar";
 
 export default function createMovie() {
 
@@ -132,6 +133,10 @@ export default function createMovie() {
             <Head>
                 <title>Cadastro de Filmes</title>
             </Head>
+
+            <Navbar>
+                
+            </Navbar>
 
             <div>
                 <form className={styles.formContainer} onSubmit={formSubmit}>
